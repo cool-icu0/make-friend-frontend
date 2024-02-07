@@ -1,16 +1,12 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import {Button, Icon, NavBar, Tabbar, TabbarItem, Toast} from "vant";
+import Vant from "vant";
+import 'vant/lib/index.css';
 import * as VueRouter from 'vue-router';
 import routes from "./config/router";
 
 const app = createApp(App);
-app.use(Button);
-app.use(NavBar);
-app.use(Icon);
-app.use(Tabbar);
-app.use(TabbarItem);
-app.use(Toast);
+app.use(Vant)
 
 
 const router = VueRouter.createRouter({

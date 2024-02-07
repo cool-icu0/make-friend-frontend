@@ -1,10 +1,10 @@
 <template>
-个人
+
 </template>
 
 <script>
 export default {
-  name: "User"
+  name: "EditUserPage"
 }
 </script>
 
