@@ -28,7 +28,7 @@
       :items="tagList"
   />
   <div style="padding: 16px">
-    <van-button type="primary" @click="doSearchResult"> 搜索</van-button>
+    <van-button block type="primary" @click="doSearchResult"> 搜索</van-button>
   </div>
 
 </template>
