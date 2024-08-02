@@ -18,12 +18,15 @@ const userList = ref([]);
 onMounted(async () => {
   const userListData = await myAxios.get('/user/recommend', {
     withCredentials: false,
-    params: {},
+    params: {
+      pageSize:8,
+      pageNum:1,
+    },
   })
       .then(function (response) {
         console.log('/user/recommend', response);
         showSuccessToast('请求成功')
-        return response?.data;
+        return response?.data?.records;
       }).catch(function (error) {
         console.log('/user/recommend', error);
         showFailToast('请求失败')
