@@ -1,7 +1,7 @@
 <template>
   <van-form @submit="onSubmit">
     <van-field
-        v-model="editUser.currentValue"
+        :v-model="editUser.currentValue"
         :name="editUser.editKey"
         :label="editUser.editName"
         :placeholder="`请输入${editUser.editName}`"
