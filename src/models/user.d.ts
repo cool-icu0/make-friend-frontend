@@ -1,7 +1,7 @@
 /**
  * 用户类别
  */
-export type UserType = {
+export type userType = {
     id: number;
     username: string;
     userAccount: string;
