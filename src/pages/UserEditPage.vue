@@ -1,7 +1,7 @@
 <template>
   <van-form @submit="onSubmit">
     <van-field
-        :v-model="editUser.currentValue"
+        v-model="editUser.currentValue"
         :name="editUser.editKey"
         :label="editUser.editName"
         :placeholder="`请输入${editUser.editName}`"
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import {useRoute, useRouter} from "vue-router";
-import {ref} from "vue";
+import { ref } from "vue";
 import myAxios from "../plugins/myAxios";
 import {showFailToast, showSuccessToast, Toast} from "vant";
 import {getCurrentUser} from "../services/user";
@@ -49,8 +49,7 @@ const onSubmit = async () => {
     showSuccessToast('修改成功');
     router.back();
   } else {
-    showFailToast('修改错误');
-  }
+    showFailToast('修改错误')}
 };
 
 </script>
