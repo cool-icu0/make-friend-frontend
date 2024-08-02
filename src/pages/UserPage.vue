@@ -9,7 +9,7 @@
     <van-cell title="电话" is-link to="/user/edit" :value="user.phone" @click="toEdit('phone','电话',user.phone)"/>
     <van-cell title="邮箱" is-link to="/user/edit" :value="user.email" @click="toEdit('email','邮箱',user.email)"/>
     <van-cell title="星球编号" :value="user.planetCode" />
-    <van-cell title="注册时间" :value="user.createTime.toISOString()"  />
+    <van-cell title="注册时间" :value="user.createTime"  />
   </template>
 </template>
 
@@ -17,21 +17,13 @@
 
 import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/myAxios";
-import {showFailToast, showSuccessToast} from "vant";
+import {getCurrentUser} from "../services/user.ts";
 
 const user =ref();
 const router = useRouter();
 
 onMounted(async () =>{
-  const res = await myAxios.get('/user/current');
-  if (res.code === 0){
-    user.value = res.data;
-    showSuccessToast('获取用户信息成功');
-  } else {
-    showFailToast('获取用户信息失败');
-
-  }
+  user.value = await getCurrentUser();
 })
 
 const toEdit = (editKey: string,editName: string,currentValue: string) =>{

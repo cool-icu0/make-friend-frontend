@@ -12,14 +12,14 @@
       </van-button>
     </div>
   </van-form>
-
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
-import myAxios from "../plugins/myAxios.ts";
-import {showToast, Toast} from "vant";
+import myAxios from "../plugins/myAxios";
+import {showFailToast, showSuccessToast, Toast} from "vant";
+import {getCurrentUser} from "../services/user";
 
 const route = useRoute();
 const router = useRouter();
@@ -29,20 +29,30 @@ const editUser = ref({
   currentValue: route.query.currentValue,
   editName: route.query.editName,
 })
-const onSubmit= async ()=>{
-  const res = await myAxios.post("/user/update", {
-    'id':1,
-    [editUser.value.editKey]:editUser.value.currentValue
-  })
-  console.log(res,'更新请求')
-  if (res.code === 0 && res.data>0){
-    console.log('修改成功')
-    showToast('修改成功')
-    router.back()
-  }else {
-    console.log('修改失败')
+
+const onSubmit = async () => {
+  const currentUser = await getCurrentUser();
+
+  if (!currentUser) {
+    Toast.fail('用户未登录');
+    return;
   }
-}
+
+  console.log(currentUser, '当前用户')
+
+  const res = await myAxios.post('/user/update', {
+    'id': currentUser.id,
+    [editUser.value.editKey as string]: editUser.value.currentValue,
+  })
+  console.log(res, '更新请求');
+  if (res.code === 0 && res.data > 0) {
+    showSuccessToast('修改成功');
+    router.back();
+  } else {
+    showFailToast('修改错误');
+  }
+};
+
 </script>
 
 <style scoped>

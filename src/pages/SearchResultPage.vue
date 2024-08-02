@@ -53,7 +53,7 @@ onMounted(async () => {
     }
   }).then(function (response) {
     console.log('/user/search/tags',response);
-    return response.data?.data;
+    return response?.data;
   }).catch(function (error){
     console.log('/user/search/tags',error);
   })
