@@ -15,7 +15,7 @@ myAxios.interceptors.request.use(
 myAxios.interceptors.response.use(
     function (response){
         console.log("我收到你的请求了",response)
-        return response;
+        return response.data;
     },
     function (error){
         return Promise.reject(error);

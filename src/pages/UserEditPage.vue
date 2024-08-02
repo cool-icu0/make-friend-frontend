@@ -18,6 +18,8 @@
 <script setup>
 import {useRoute, useRouter} from "vue-router";
 import {ref} from "vue";
+import myAxios from "../plugins/myAxios.ts";
+import {showToast, Toast} from "vant";
 
 const route = useRoute();
 const router = useRouter();
@@ -27,8 +29,19 @@ const editUser = ref({
   currentValue: route.query.currentValue,
   editName: route.query.editName,
 })
-const onSubmit=(values)=>{
-  console.log('onSubmit',values)
+const onSubmit= async ()=>{
+  const res = await myAxios.post("/user/update", {
+    'id':1,
+    [editUser.value.editKey]:editUser.value.currentValue
+  })
+  console.log(res,'更新请求')
+  if (res.code === 0 && res.data>0){
+    console.log('修改成功')
+    showToast('修改成功')
+    router.back()
+  }else {
+    console.log('修改失败')
+  }
 }
 </script>
 

@@ -6,7 +6,7 @@
       :thumb="user.avatarUrl"
   >
     <template #tags>
-      <van-tag plain type="danger" v-for="tag in tags" style="margin-right: 8px; margin-top: 8px" >
+      <van-tag plain type="danger" v-for="tag in user.tags" style="margin-right: 8px; margin-top: 8px" >
         {{tag}}
       </van-tag>
     </template>
@@ -20,7 +20,7 @@
 <script setup>
 import {useRoute} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/myAxios.js";
+import myAxios from "../plugins/myAxios.ts";
 import qs from 'qs';
 
 const route = useRoute();
