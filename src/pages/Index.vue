@@ -17,7 +17,6 @@ const userList = ref([]);
 
 onMounted(async () => {
   const userListData = await myAxios.get('/user/recommend', {
-    withCredentials: false,
     params: {
       pageSize:8,
       pageNum:1,
