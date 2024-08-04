@@ -1,10 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import Vant from "vant";
-import 'vant/lib/index.css';
 import * as VueRouter from 'vue-router';
 import routes from "./config/router";
-
+import "vant/lib/index.css" // 全局引入样式
+//这边要二次引入，防止popup把toast顶掉出现白色
+import "vant/es/toast/style"
 const app = createApp(App);
 app.use(Vant)
 
