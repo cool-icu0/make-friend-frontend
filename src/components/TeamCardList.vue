@@ -15,6 +15,9 @@
       </template>
       <template #bottom>
         <div>
+          {{`队伍人数：${team.hasJoinNum}/${team.maxNum}`}}
+        </div>
+        <div>
           {{ '最大人数' + team.maxNum }}
         </div>
         <div>
