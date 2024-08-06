@@ -4,7 +4,7 @@
     <van-tabs v-model:active="active" @change="onTabChange">
       <van-tab title="公开" name="public"/>
       <van-tab title="加密" name="secret"/>
-      <van-tab title="私有" name="private"/>
+      <!--<van-tab title="私有" name="private"/>-->
     </van-tabs>
     <div style="margin-bottom: 16px"/>
     <van-button class="add-button" type="primary" icon="plus" @click="toAddTeam"/>
@@ -44,10 +44,10 @@ const onTabChange =(name)=>{
   if (name=== 'public'){
     listTeam(searchText.value,0);
   }
-  if (name === 'private') {
-    //查私有
-    listTeam(searchText.value,1);
-  }
+  // if (name === 'private') {
+  //   //查私有
+  //   listTeam(searchText.value,1);
+  // }
   if (name === 'secret') {
     //查加密
     listTeam(searchText.value,2);
